@@ -2,16 +2,17 @@
 using MongoDB.Driver;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Catalog.Api.Data
 {
     public class CatalogContextSeed
     {
-        public static async Task SeedData(IMongoCollection<Product> productCollection)
+        public static void SeedData(IMongoCollection<Product> productCollection)
         {
             if (!productCollection.Find(x => true).Any())
             {
-                await productCollection.InsertManyAsync(GetPreconfiguredProducts());
+                productCollection.InsertManyAsync(GetPreconfiguredProducts());
             }
         }
 
@@ -21,7 +22,11 @@ namespace Catalog.Api.Data
 
             var productsData = File.ReadAllText(path + @"/Data/SeedData/products.json");
 
-            var products = JsonSerializer.Deserialize<List<Product>>(productsData);
+            var products = JsonSerializer.Deserialize<List<Product>>(productsData, new JsonSerializerOptions()
+            {
+                NumberHandling = JsonNumberHandling.AllowReadingFromString |
+                JsonNumberHandling.WriteAsString
+            });
 
             return products;
         }
