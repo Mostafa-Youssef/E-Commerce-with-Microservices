@@ -23,7 +23,8 @@ namespace Basket.Api.Repositories
         {
             await _redisCache.SetStringAsync(basket.UserName, JsonConvert.SerializeObject(basket), new DistributedCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(30)
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(30),
+                SlidingExpiration = TimeSpan.FromDays(3)
             });
 
             return await GetBasketAsync(basket.UserName);
