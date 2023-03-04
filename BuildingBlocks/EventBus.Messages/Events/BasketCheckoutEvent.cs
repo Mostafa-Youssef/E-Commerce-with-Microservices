@@ -1,21 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Ordering.Domain.Common;
-using Ordering.Domain.Entities.EntityHelpers;
+﻿using EventBus.Messages.Events.EntityHelpers;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ordering.Domain.Entities
+namespace EventBus.Messages.Events
 {
-    public class Order : EntityBase
+    public class BasketCheckoutEvent : IntegrationBaseEvents
     {
         public string UserName { get; set; }
         public decimal TotalPrice { get; set; }
         public int DeliveryMethodId { get; set; }
-
-        [Column(TypeName = "nvarchar(max)")]
-        public OrderStatus Status { get; set; }
-
-        public DeliveryMethod DeliveryMethod { get; set; }
-
+        public string Status { get; set; }
 
         #region Owend by order see conifiguration
 

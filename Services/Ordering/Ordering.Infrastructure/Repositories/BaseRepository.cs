@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         protected readonly AppDbContext _context;
         private DbSet<T> DbSet { get; set; }

@@ -1,20 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Ordering.Domain.Common;
-using Ordering.Domain.Entities.EntityHelpers;
+﻿using Basket.Api.Models.Entities.EntityHelpers;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Ordering.Domain.Entities
+namespace Basket.Api.Models.Entities
 {
-    public class Order : EntityBase
+    public class BasketCheckout
     {
         public string UserName { get; set; }
         public decimal TotalPrice { get; set; }
         public int DeliveryMethodId { get; set; }
+        public string Status { get; set; } 
 
-        [Column(TypeName = "nvarchar(max)")]
-        public OrderStatus Status { get; set; }
-
-        public DeliveryMethod DeliveryMethod { get; set; }
 
 
         #region Owend by order see conifiguration

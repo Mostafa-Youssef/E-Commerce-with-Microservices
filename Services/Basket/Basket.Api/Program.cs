@@ -1,6 +1,11 @@
 using Basket.Api.GrpcService;
+using Basket.Api.Options;
 using Basket.Api.Repositories;
 using Discount.Grpc.Protos;
+using Mapster;
+using MapsterMapper;
+using MassTransit;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +24,36 @@ builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddScoped<DiscountGrpcService>();
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
                 (x => x.Address = new Uri(builder?.Configuration["GrpcSettings:DiscountUrl"]));
+
+#region MassTransit-RabbitMQ Configuration
+
+RabbitMQOption rabbitMQOption = new RabbitMQOption();
+builder.Configuration.GetSection(nameof(RabbitMQOption)).Bind(rabbitMQOption);
+
+builder.Services.AddMassTransit(config =>
+{
+    config.UsingRabbitMq((context, cfg) =>
+    {
+        //cfg.Host("amqp://guest:guest@localhost:5672");
+        cfg.Host(rabbitMQOption.Host, config =>
+        {
+            config.Username(rabbitMQOption.UserName);
+            config.Password(rabbitMQOption.Password);
+        });
+    });
+});
+
+#endregion
+
+#region Mapping Dependency
+
+var config = TypeAdapterConfig.GlobalSettings;
+config.Scan(Assembly.GetExecutingAssembly());
+builder.Services.AddSingleton(config);
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+#endregion
+
+
 
 var app = builder.Build();
 

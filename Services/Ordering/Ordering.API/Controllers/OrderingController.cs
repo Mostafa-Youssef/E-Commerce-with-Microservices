@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Ordering.Application.Contracts.Persistence;
 using Ordering.Application.Features.Orders.Commands.CheckoutOrder;
 using Ordering.Application.Features.Orders.Commands.DeleteOrder;
 using Ordering.Application.Features.Orders.Commands.UpdateOrder;
@@ -14,10 +15,12 @@ namespace Ordering.API.Controllers
     public class OrderingController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IDeliveryRepository _deliveryRepository;
 
-        public OrderingController(IMediator mediator)
+        public OrderingController(IMediator mediator, IDeliveryRepository deliveryRepository)
         {
             _mediator = mediator;
+            _deliveryRepository = deliveryRepository;
         }
 
         [HttpGet("{userName}", Name = "GetOrder")]
@@ -57,6 +60,12 @@ namespace Ordering.API.Controllers
             var command = new DeleteOrderCommand(id);
             await _mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpGet("DeliveryMethods")]
+        public async Task<IActionResult> GetAllDeliveryMethods()
+        {
+            return Ok(await _deliveryRepository.GetAllAsync());
         }
 
     }
