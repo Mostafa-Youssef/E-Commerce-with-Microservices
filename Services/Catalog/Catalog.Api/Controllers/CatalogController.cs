@@ -27,8 +27,8 @@ namespace Catalog.Api.Controllers
         }
 
         [HttpGet("{id:length(24)}", Name ="GetProduct")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await _productRepository.GetProduct(id);

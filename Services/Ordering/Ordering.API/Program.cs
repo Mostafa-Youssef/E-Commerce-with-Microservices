@@ -73,7 +73,7 @@ app.UseRouting();
 app.MapControllers();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.MigrateDatabaseAsync<AppContextSeed>().Wait();
+await app.MigrateDatabaseAsync<AppContextSeed>();
 
 app.Run();
 
