@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBus.Messages", "Buildi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateWays", "ApiGateWays", "{6BA0180E-CC52-4D97-8B81-8A869B047CA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApiGateWay", "ApiGateWays\OcelotApiGateWay\OcelotApiGateWay.csproj", "{1BBCBD00-0D91-4FE9-8F79-60279F7A5D87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OcelotApiGateWay", "ApiGateWays\OcelotApiGateWay\OcelotApiGateWay.csproj", "{1BBCBD00-0D91-4FE9-8F79-60279F7A5D87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Aggregator", "ApiGateWays\Shopping.Aggregator\Shopping.Aggregator\Shopping.Aggregator.csproj", "{8D4BA8CA-C5FD-4A34-9D3A-F2E550B61379}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{1BBCBD00-0D91-4FE9-8F79-60279F7A5D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BBCBD00-0D91-4FE9-8F79-60279F7A5D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BBCBD00-0D91-4FE9-8F79-60279F7A5D87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D4BA8CA-C5FD-4A34-9D3A-F2E550B61379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D4BA8CA-C5FD-4A34-9D3A-F2E550B61379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D4BA8CA-C5FD-4A34-9D3A-F2E550B61379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D4BA8CA-C5FD-4A34-9D3A-F2E550B61379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{A7A41442-7B41-423C-AC86-BDA7FFA98D02} = {B76CE500-85A0-4BE4-A279-92EA837E5730}
 		{80FD2F74-929F-42B4-BA0B-CE7D322A8FC8} = {20C07854-CD5B-4780-86DF-6CE2A529F8E2}
 		{1BBCBD00-0D91-4FE9-8F79-60279F7A5D87} = {6BA0180E-CC52-4D97-8B81-8A869B047CA6}
+		{8D4BA8CA-C5FD-4A34-9D3A-F2E550B61379} = {6BA0180E-CC52-4D97-8B81-8A869B047CA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A1DC605-ABD1-4053-B539-4A9902D404AD}
